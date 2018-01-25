@@ -1,0 +1,50 @@
+html{
+	font-family: 'Proxima Nova', Helvetica, sans-serif;
+	font-weight: 200;
+}
+
+.input-svg{
+	width: 100%;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.input-text, .button{
+	font-size: 20px;
+}
+
+.button{
+	padding: 20px 40px;
+	margin: 20px;
+	border: 1px solid black;
+	border-radius: 30px;
+	text-align: center;
+}
+
+.prompt, .ratio{
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+
+.ratio-text{
+	font-size: 20px;
+}
+
+.module{
+	min-height: 400px;
+}
+
+#totalIntake, #totalOutcome {
+	font-size: 14px;
+}
+
+.labelOutcome-L, .labelOutcome-O{
+	font-size: 14px;
+}
+
+.source{
+	font-size: 12px;
+	text-align: center;
+	width: 80%;
+	margin: auto;
+}

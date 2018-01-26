@@ -275,23 +275,27 @@ function draw(input){
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`${ratioIntake} ${input} `)
+      .text(`${ratioIntake} `)
       .style('font-weight','400');
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`that enter a shelter in the U.S., `);
+      .text(`${input} that enter a shelter in the U.S., `);
+  ratioText
+    .append('tspan')
+    .attr('class','ratio-text')
+    .attr('x',(w/2)+'px')
+    .attr('dy','1.4em')
+    .text(`there are `);
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .attr('x',(w/2)+'px')
-      .attr('dy','1.2em')
       .text(`${ratioOutcomeLive} `)
       .style('font-weight','400');
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`have a live outcome, but `);
+      .text(`shelter ${input} that have a live outcome, and `);
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
@@ -300,13 +304,13 @@ function draw(input){
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`does not.`);
+      .text(`that does not.`);
     ratioText
       .append('tspan')
       .attr('id','ratio-shelters')
       .attr('x',(w/2)+'px')
-      .attr('dy','2.4em')
-      .text(`These counts are provided by ${orgs.toLocaleString('en')} animal shelters.`);
+      .attr('dy','2.8em')
+      .text(`These counts are provided by ${orgs.toLocaleString('en')} animal shelters from 2016.`);
 
 
   /*------------------------bar chart------------------------*/
@@ -533,10 +537,10 @@ function draw(input){
       .style('text-anchor','middle');
 
     //labels and counts for outcome categories
-    const barOutcomeL = scaleY(sumOutcomeLive);
-    const barOutcomeO = scaleY(sumOutcome);
+    const barOutcomeL = scaleY(sumOutcomeLive/2);
+    const barOutcomeO = scaleY(sumOutcome-(sumOutcomeOther/2));
     const adjX = 10;
-    const adjY = 10;
+    const adjY = 0;
 
     const labelOutcomeSub = labels.append('g')
       .attr('class','labelOutcomeGroup')
@@ -561,7 +565,7 @@ function draw(input){
       .attr('x','0px')
       .attr('dy', '1.2em');
     textOutcomeO.append('tspan')
-      .text('Other Outcomes')
+      .text('Died or Lost')
       .style('fill',colorsOutcomeO[0])
       .style('font-weight','600')
       .attr('dy', '0.2em')

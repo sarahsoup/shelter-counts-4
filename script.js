@@ -280,13 +280,13 @@ function draw(input){
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`${input} that enter a shelter in the U.S., `);
+      .text(`${input} that entered a shelter in the U.S., `);
   ratioText
     .append('tspan')
     .attr('class','ratio-text')
     .attr('x',(w/2)+'px')
     .attr('dy','1.4em')
-    .text(`there are `);
+    .text(`there were `);
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
@@ -295,7 +295,7 @@ function draw(input){
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`shelter ${input} that have a live outcome, and `);
+      .text(`shelter ${input} that had a live outcome, and `);
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
@@ -304,7 +304,7 @@ function draw(input){
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`that does not.`);
+      .text(`that did not.`);
     ratioText
       .append('tspan')
       .attr('id','ratio-shelters')

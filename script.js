@@ -42,13 +42,13 @@ const inputPrompt = d3.select('.prompt');
 
 const inputSvg = inputPrompt.append('svg')
   .attr('class','input-svg')
-  .attr('height','50px');
+  .attr('height','60px');
 
 const inputText = inputSvg.append('text')
   .attr('class','input-text')
   .attr('text-anchor','middle')
   .attr('x',(w/2)+'px')
-  .attr('y','14px')
+  .attr('dy','1.4em')
   .text('Which animal do you like more?');
 
 const inputButtons = inputPrompt.append('g')
@@ -261,56 +261,36 @@ function draw(input){
       .append('svg')
       .attr('class','ratio-svg')
       .attr('width', w)
-      .attr('height',100);
+      .attr('height',50);
     const ratioText = ratiosvg
       .append('text')
       .attr('text-anchor','middle')
-      .attr('x',(w/2)+'px')
-      .attr('y','14px');
+      .attr('x',(w/2)+'px');
 
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`For every `);
-    ratioText
-      .append('tspan')
-      .attr('class','ratio-text')
-      .text(`${ratioIntake} `)
-      .style('font-weight','400');
-    ratioText
-      .append('tspan')
-      .attr('class','ratio-text')
-      .text(`${input} that entered a shelter in the U.S., `);
-  ratioText
-    .append('tspan')
-    .attr('class','ratio-text')
-    .attr('x',(w/2)+'px')
-    .attr('dy','1.4em')
-    .text(`there were `);
+      .attr('x',(w/2)+'px')
+      .attr('dy','1.4em')
+      .text(`In the U.S., for every `);
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
       .text(`${ratioOutcomeLive} `)
-      .style('font-weight','400');
+      .style('font-weight','bold');
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`shelter ${input} that had a live outcome, and `);
+      .text(`shelter ${input} that survived, `);
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
       .text(`1 `)
-      .style('font-weight','400');
+      .style('font-weight','bold');
     ratioText
       .append('tspan')
       .attr('class','ratio-text')
-      .text(`that did not.`);
-    ratioText
-      .append('tspan')
-      .attr('id','ratio-shelters')
-      .attr('x',(w/2)+'px')
-      .attr('dy','2.8em')
-      .text(`These counts are provided by ${orgs.toLocaleString('en')} animal shelters from 2016.`);
+      .text(`did not.`);
 
 
   /*------------------------bar chart------------------------*/
@@ -482,8 +462,7 @@ function draw(input){
       .attr('class', 'tooltip')
       .style('display', 'none');
 
-    const tooltipText = tooltip.append('text')
-      .attr('font-size', '12px');
+    const tooltipText = tooltip.append('text');
 
       tooltipText
       .append('tspan')
@@ -510,14 +489,14 @@ function draw(input){
       .attr('class','label-text')
       .attr('id','labelIntake')
       .attr('transform','translate(' + (barPosI+(barW/2)) + ',' + (hh+24)+ ')')
-      .text('Intakes')
+      .text('Entered Shelter in 2016')
       .style('text-anchor','middle');
     labels
       .append('text')
       .attr('class','label-text')
       .attr('id','labelOutcome')
       .attr('transform','translate(' + (barPosO+(barW/2)) + ',' + (hh+24)+ ')')
-      .text('Outcomes')
+      .text('Left Shelter in 2016')
       .style('text-anchor','middle');
 
     //counts above bars
@@ -555,7 +534,7 @@ function draw(input){
     const textOutcomeO = labelOutcomeO.append('text');
 
     textOutcomeL.append('tspan')
-      .text('Live Outcomes')
+      .text('Survived')
       .style('fill',colorsOutcomeL[0])
       .style('font-weight','600')
       .attr('dy', '0.2em')
@@ -575,31 +554,12 @@ function draw(input){
       .attr('x','0px')
       .attr('dy', '1.2em');
 
-    const labelOutcomeLines = labelOutcomeSub.append('g')
-      .attr('class','labelOutcome-lines');
-
-    // labelOutcomeLines.append('line')
-    //   .attr('x1',barPosO+barW+2)
-    //   .attr('y1',barOutcomeL+1)
-    //   .attr('x2',barPosO+barW+120)
-    //   .attr('y2',barOutcomeL+1)
-    //   .attr('stroke',colorsOutcomeL[0])
-    //   .attr('stroke-width',1);
-    //
-    // labelOutcomeLines.append('line')
-    //   .attr('x1',barPosO+barW+2)
-    //   .attr('y1',barOutcomeO+1)
-    //   .attr('x2',barPosO+barW+120)
-    //   .attr('y2',barOutcomeO+1)
-    //   .attr('stroke',colorsOutcomeO[0])
-    //   .attr('stroke-width',1);
-
 
   /*------------------------footnote------------------------*/
 
     d3.select('.source')
       .append('text')
-      .text('Data from Shelter Animals Count')
+      .html(`These counts are provided by ${orgs.toLocaleString('en')} animal shelters from 2016 | sourced from Shelter Animals Count`);
 
   });
 };

@@ -38,10 +38,7 @@ function parse(d){
 };
 
 //create prompt for user input
-const inputPrompt = d3.select('.prompt');
-
-const inputSvg = inputPrompt.append('svg')
-  .attr('class','input-svg')
+const inputSvg = d3.select('.input-svg')
   .attr('height','60px');
 
 const inputText = inputSvg.append('text')
@@ -51,34 +48,50 @@ const inputText = inputSvg.append('text')
   .attr('dy','1.4em')
   .text('Which animal do you like more?');
 
-const inputButtons = inputPrompt.append('g')
+const inputButtons = d3.select('#type-form').append('g')
   .attr('id','input-buttons');
 
-inputButtons.append('a')
+inputButtons.append('input')
+  .attr('type','button')
   .attr('class','button')
-  .html('cats')
+  .attr('name','animal')
+  .attr('value','cats')
   .style('cursor','pointer')
   .on('click',function(d){
-    input = 'cats';
+    input = this.value;
     draw(input);
-    inputPrompt.style('display','none');
+    d3.select('.prompt').style('display','none');
   });
 
-inputButtons.append('a')
+inputButtons.append('input')
+  .attr('type','button')
   .attr('class','button')
-  .html('dogs')
+  .attr('name','animal')
+  .attr('value','dogs')
   .style('cursor','pointer')
   .on('click',function(d){
-    input = 'dogs';
+    input = this.value;
     draw(input);
-    inputPrompt.style('display','none');
+    d3.select('.prompt').style('display','none');
   });
+
+//submit with jQuery
+var url = 'https://script.google.com/macros/s/AKfycby0M6DX6kHPens8TVKxIjIPpwFdm83gPoP7M9Pg2H3QfRIspiY/exec'
+
+$('.button').on('click', function(e) {
+  e.preventDefault();
+  var jqxhr = $.ajax({
+    url: url,
+    method: "GET",
+    dataType: "json",
+    data: {animal: this.value},
+  })
+})
 
 const buttonW = d3.select('#input-buttons').node().getBoundingClientRect().width;
 
 inputButtons
-  .style('padding-left',((w/2)-(buttonW/2))+'px')
-  .style('padding-right',((w/2)-(buttonW/2))+'px');
+  .style('padding-left',((w/2)-(buttonW/2))+'px');
 
 //load data
 function draw(input){
@@ -89,7 +102,6 @@ function draw(input){
     const orgs = counts[0].orgs;
 
     //filter for user-input
-    // input = 'cats';
     const countsFilter = counts.filter(function(d){ return d.species == input});
 
 

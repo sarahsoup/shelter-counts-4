@@ -2,16 +2,21 @@
 <html>
 	<head>
 		<meta charset='utf-8'>
-		<link href="style.css" rel="stylesheet"/>
+		<link href='style.css' rel='stylesheet'/>
 	</head>
 	<body>
 		<div class='container'>
-			<div class='prompt'></div>
+			<div class='prompt'>
+				<svg class='input-svg'></svg>
+				<form id='type-form'></form>
+			</div>
 			<div class='ratio'></div>
 			<div class='module' id='bar-chart'></div>
 			<div class='source'></div>
 		</div>
-		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src='https://d3js.org/d3.v4.min.js'></script>
+		<script src='./jquery-3.3.1-min.js'></script>
+		<script src='./jquery.serialize-object.min.js'></script>
 		<script src='./script.js'></script>
 	</body>
 </html>
